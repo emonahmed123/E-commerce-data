@@ -1,14 +1,14 @@
-export type Tvariant= {
+export type Tvariant = {
   type: string
   value: string
 }
 
-export type Tinventory= {
+export type Tinventory = {
   quantity: number
   inStock: boolean
 }
 
-export type Tproduct= {
+export type Tproduct = {
   name: string
   description: string
   price: number
