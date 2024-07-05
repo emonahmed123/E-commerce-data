@@ -1,13 +1,11 @@
-
 import { productsModel } from '../products/products.model'
 import { OrderModel } from './order.model'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const createOrderIntoDB = async (orderData:any) => {
-   const id =orderData.productId
-  const product = await productsModel.findById( id)
- console.log(product)
-  if (!product) {
+const createOrderIntoDB = async (orderData: any) => {
+  const product = await productsModel.findById(orderData.productId)
+
+  if (product === null) {
     throw new Error('Product is not available in inventory')
   }
 
@@ -25,8 +23,21 @@ const createOrderIntoDB = async (orderData:any) => {
   return order
 }
 
+const getAllOrdersFromDB = async () => {
+  return await OrderModel.find()
+}
+
+const getOrdersByEmailFromDB = async (email: string) => {
+  const EmailExist = await OrderModel.findOne({ email: email })
+
+  if (!EmailExist) {
+    throw new Error('Order not found')
+  } else {
+    return await OrderModel.find({ email })
+  }
+}
 export const OrderServices = {
   createOrderIntoDB,
-  // getAllOrdersFromDB,
-  // getOrdersByEmailFromDB,
+  getAllOrdersFromDB,
+  getOrdersByEmailFromDB,
 }

@@ -11,8 +11,10 @@ app.use(express.json())
 //routes
 
 app.use('/api/products', ProductsRoutes)
-app.use('/api/orders',OrderRoutes)
-
+app.use('/api/orders', OrderRoutes)
+app.use((req, res) => {
+  res.status(404).json({ message: 'Route not found' })
+})
 app.get('/', (req, res) => {
   res.send('Every thing ok ')
 })
