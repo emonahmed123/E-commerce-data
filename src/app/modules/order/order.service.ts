@@ -4,7 +4,8 @@ import { OrderModel } from './order.model'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const createOrderIntoDB = async (orderData:any) => {
-  const product = await productsModel.findById(orderData.productId)
+   const id =orderData.productId
+  const product = await productsModel.findById( id)
  console.log(product)
   if (!product) {
     throw new Error('Product is not available in inventory')

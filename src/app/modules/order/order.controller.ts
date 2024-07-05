@@ -5,7 +5,7 @@ import orderValidation from './ordervalidation'
 const createOrder = async (req: Request, res: Response) => {
   try {
     const orderData = req.body
-    console.log(orderData)
+ 
     const zodParseData = orderValidation.parse(orderData)
 
     const result = await OrderServices.createOrderIntoDB(zodParseData)
