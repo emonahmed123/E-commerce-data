@@ -1,19 +1,19 @@
-export interface Tvariant {
+export type Tvariant= {
   type: string
   value: string
 }
 
-export interface Tinventory {
+export type Tinventory= {
   quantity: number
   inStock: boolean
 }
 
-export interface Tproduct {
+export type Tproduct= {
   name: string
   description: string
   price: number
   category: string
   tags: string[]
-  variants: Tvariant
+  variants: Tvariant[]
   inventory: Tinventory
 }

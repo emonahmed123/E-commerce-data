@@ -17,7 +17,7 @@ const productsSchema = new Schema<Tproduct>({
   price: { type: Number, required: true },
   category: { type: String, required: true },
   tags: { type: [String], required: true },
-  variants: { type: VariantSchema, required: true },
+  variants: { type: [VariantSchema], required: true },
   inventory: { type: InventorySchema, required: true },
 })
 
