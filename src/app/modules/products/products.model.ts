@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose'
+import  { Schema,model } from 'mongoose'
 import { Tinventory, Tproduct, Tvariant } from './products.interface'
 
 const VariantSchema = new Schema<Tvariant>({
@@ -21,4 +21,4 @@ const productsSchema = new Schema<Tproduct>({
   inventory: { type: InventorySchema, required: [true,"inventory required"] },
 })
 
-export const productsModel = mongoose.model('products', productsSchema)
+export const productsModel = model<Tproduct>('products', productsSchema)

@@ -24,8 +24,9 @@ const createProducts = async (req: Request, res: Response) => {
     res.status(500).json({
        
       success: false,
-      message: error.message || 'something went wrong',
-      data:  error , 
+      message: "Failed to create Product",
+       error:error
+     
     })
   }
 }
@@ -38,7 +39,7 @@ const getAllProducts = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: 'Product created successfully!',
+      message: 'Product get successfully!',
       data: result,
     })
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,12 +49,88 @@ const getAllProducts = async (req: Request, res: Response) => {
        
       success: false,
       message: error.message || 'something went wrong',
-      data:  error , 
+       error, 
+    })
+  }
+}
+const getSingleProducts = async (req: Request, res: Response) => {
+  try {
+ 
+    const { productId } = req.params;
+  
+    const result = await  ProductServices.getSinglesIntoDb(productId)
+
+    res.status(200).json({
+      success: true,
+      message: 'Get Product successfully!',
+      data: result,
+    })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error:any) {
+    
+    res.status(500).json({
+       
+      success: false,
+      message: error.message || 'something went wrong',
+      error , 
+    })
+  }
+}
+const updateSingleProducts = async (req: Request, res: Response) => {
+  try {
+       
+    const productData =req.body
+    const { productId } = req.params;
+  
+    const result = await  ProductServices.updateSinglesIntoDb(productId,productData)
+
+    res.status(200).json({
+      success: true,
+      message: 'Product Update successfully!',
+      data: result,
+    })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error:any) {
+    
+    res.status(500).json({
+       
+      success: false,
+      message: error.message || 'something went wrong',
+      error , 
+    })
+  }
+}
+
+
+const deleteSingleProducts = async (req: Request, res: Response) => {
+  try {
+       
+  
+    const  {productId}  = req.params;
+  
+    const result = await  ProductServices.deleteSinglesIntoDb(productId)
+
+    res.status(200).json({
+      success: true,
+      message: 'Product delete successfully!',
+      data: result,
+    })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error:any) {
+    
+    res.status(500).json({
+       
+      success: false,
+      message: error.message || 'something went wrong',
+      error , 
     })
   }
 }
 
 export const ProductsController = {
   createProducts,
-  getAllProducts
+  getAllProducts,
+  getSingleProducts,
+  updateSingleProducts,
+  deleteSingleProducts
 }

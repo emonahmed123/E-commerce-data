@@ -12,7 +12,7 @@ app.use(express.json());
 app.use('/api/products',ProductsRoutes)
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Every thing ok ')
 })
 
 export default app

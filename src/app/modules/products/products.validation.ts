@@ -6,12 +6,12 @@ const VariantSchema = z.object({
 });
 
 const InventorySchema = z.object({
-  quantity: z.number(),
+  quantity: z.number().int().nonnegative(),
   inStock: z.boolean(),
 });
 
 const ProductSchemaValidation = z.object({
-  name: z.string(),
+  name: z.string().min(3),
   description: z.string(),
   price: z.number(),
   category: z.string(),
